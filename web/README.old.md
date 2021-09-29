@@ -1,1 +1,0 @@
-## Frontend to interact with Promacoin
