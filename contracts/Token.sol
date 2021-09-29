@@ -46,7 +46,7 @@ contract Token {
         @return Token balance
      */
     function balanceOf(address _owner) public view returns (uint256) {
-        return 1337;
+        return balances[_owner];
     }
 
     /**
@@ -116,7 +116,6 @@ contract Token {
         public
         returns (bool)
     {
-        _value = _value * 2;
         require(allowed[_from][msg.sender] >= _value, "Insufficient allowance");
         allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_value);
         _transfer(_from, _to, _value);
