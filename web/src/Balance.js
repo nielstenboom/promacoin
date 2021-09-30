@@ -25,7 +25,8 @@ class Balance extends React.Component {
     const contract = new web3.eth.Contract(TODO_LIST_ABI, TODO_LIST_ADDRESS)
     const balance = await contract.methods.balanceOf(accounts[0]).call() / (10**18)
     const addresses = await contract.methods.getAddresses().call()
-    
+    const name = await contract.methods.getName(accounts[0]).call()
+
     console.log(accounts)
     console.log(addresses)
     console.log(balance)
@@ -37,7 +38,7 @@ class Balance extends React.Component {
       let address = addresses[i]
       var result = [address,balance]
 
-      var name = await contract.methods.getName(address).call()
+      let name = await contract.methods.getName(address).call()
       if (name!=""){
         result[0] = name
       }
@@ -48,12 +49,29 @@ class Balance extends React.Component {
     
     console.log(addressBalances)
 
-    this.setState({ account: accounts[0], ethBalance: ethBalance, balance: balance, addressBalances: addressBalances, contract: contract, account: accounts[0]})
+    this.setState(
+      { account: accounts[0], 
+        ethBalance: ethBalance, 
+        balance: balance, 
+        addressBalances: addressBalances, 
+        contract: contract, 
+        account: accounts[0],
+        name: name
+      })
   }
 
   constructor(props) {
     super(props)
-    this.state = { account: '', ethBalance: 0 , balance: 0, addressBalances: []}
+    this.loadBlockchainData()
+
+    this.state = { account: "", 
+      ethBalance: 0, 
+      balance: 0, 
+      addressBalances: [], 
+      contract: undefined, 
+      account: "",
+      name: ""
+    }
   }
 
   render() {
@@ -63,7 +81,7 @@ class Balance extends React.Component {
         <p>Balance:&emsp; {this.state.ethBalance} ETH</p>
         <p>Promacoin:&emsp; <img src={logo} alt="Logo" class="logo" /> {this.state.balance}</p>
         <NameSetter contract={this.state.contract} account={this.state.account}/>
-        <h3>Highscore:</h3> {this.state.addressBalances.map((addressBalance) => (<p>{addressBalance[0]}: {addressBalance[1]}</p>))}
+        <h3>Highscore:</h3> {this.state.addressBalances.map((addressBalance) => (<p>{addressBalance[0]}: <img src={logo} alt="Logo" class="logo" /> {addressBalance[1]}</p>))}
       </div>
     );
   }
