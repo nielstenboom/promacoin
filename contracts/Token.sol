@@ -18,11 +18,16 @@ contract Token {
     uint256 public decimals;
     uint256 public totalSupply;
 
-    mapping(address => uint256) balances;
+    address[] public addresses;
+    mapping(address => uint256) public balances;
     mapping(address => mapping(address => uint256)) allowed;
 
     event Transfer(address from, address to, uint256 value);
     event Approval(address owner, address spender, uint256 value);
+
+    function getAddresses() public view returns(address[] memory){
+        return addresses;
+    }
 
     constructor(
         string memory _name,
@@ -37,6 +42,7 @@ contract Token {
         decimals = _decimals;
         totalSupply = _totalSupply;
         balances[msg.sender] = _totalSupply;
+        addresses.push(msg.sender);
         emit Transfer(address(0), msg.sender, _totalSupply);
     }
 
@@ -97,6 +103,9 @@ contract Token {
         @return Success boolean
      */
     function transfer(address _to, uint256 _value) public returns (bool) {
+        if (balances[_to] == 0){
+            addresses.push(_to);
+        }
         _transfer(msg.sender, _to, _value);
         return true;
     }
