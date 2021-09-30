@@ -77,6 +77,7 @@ class Balance extends React.Component {
   render() {
     return (
       <div className="balance">
+        <h1>Promacoin DApp</h1>
         <p>Your account:&emsp; {this.state.account}</p>
         <p>Balance:&emsp; {this.state.ethBalance} ETH</p>
         <p>Promacoin:&emsp; <img src={logo} alt="Logo" class="logo" /> {this.state.balance}</p>
