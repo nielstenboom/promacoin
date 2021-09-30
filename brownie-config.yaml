@@ -3,3 +3,8 @@
 reports:
   exclude_contracts:
     - SafeMath
+
+network:
+    networks:
+        ropsten:
+            host: https://mainnet.infura.io/v3/8bf1651500204e3cb32fe2b2a16121e1
