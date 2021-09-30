@@ -1,4 +1,4 @@
-export const TODO_LIST_ADDRESS = '0x3340a84e0b42BdAbC6ddDcDeC45fa566fe52fBa9'
+export const TODO_LIST_ADDRESS = '0x3583382ff651837fddc07D512fE2f739A323D11c'
 
 export const TODO_LIST_ABI = [
   {
@@ -209,6 +209,25 @@ export const TODO_LIST_ABI = [
     "type": "function"
   },
   {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_address",
+        "type": "address"
+      }
+    ],
+    "name": "getName",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [],
     "name": "name",
     "outputs": [
@@ -219,6 +238,38 @@ export const TODO_LIST_ABI = [
       }
     ],
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "names",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_name",
+        "type": "string"
+      }
+    ],
+    "name": "setName",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {

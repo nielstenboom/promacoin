@@ -6,3 +6,10 @@
 .logo {
     height: 20px;
 }
+
+.balance {
+    background-color: #abababa3;
+    width: 800px;
+    margin: auto;
+    padding: 20px;
+}

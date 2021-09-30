@@ -19,11 +19,20 @@ contract Token {
     uint256 public totalSupply;
 
     address[] public addresses;
+    mapping(address => string) public names;
     mapping(address => uint256) public balances;
     mapping(address => mapping(address => uint256)) allowed;
 
     event Transfer(address from, address to, uint256 value);
     event Approval(address owner, address spender, uint256 value);
+
+    function getName(address _address) public view returns(string memory){
+        return names[_address];
+    }
+
+    function setName(string memory _name) public {
+        names[msg.sender] = _name;
+    }
 
     function getAddresses() public view returns(address[] memory){
         return addresses;
