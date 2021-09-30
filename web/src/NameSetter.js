@@ -32,3 +32,4 @@ class NameSetter extends React.Component {
 }
 
 export default NameSetter;
+
