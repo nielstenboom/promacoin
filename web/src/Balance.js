@@ -35,7 +35,14 @@ class Balance extends React.Component {
     for (let i = 0; i < addresses.length; i++){
       let balance = await contract.methods.balanceOf(addresses[i]).call() / (10**18)
       let address = addresses[i]
-      addressBalances.push([address,balance])
+      var result = [address,balance]
+
+      var name = await contract.methods.getName(address).call()
+      if (name!=""){
+        result[0] = name
+      }
+
+      addressBalances.push(result)
     }
     addressBalances = addressBalances.sort(function(a, b) { return b[1] - a[1]; });
     
@@ -55,7 +62,6 @@ class Balance extends React.Component {
         <p>Your account:&emsp; {this.state.account}</p>
         <p>Balance:&emsp; {this.state.ethBalance} ETH</p>
         <p>Promacoin:&emsp; <img src={logo} alt="Logo" class="logo" /> {this.state.balance}</p>
-        <p>Set name</p>
         <NameSetter contract={this.state.contract} account={this.state.account}/>
         <h3>Highscore:</h3> {this.state.addressBalances.map((addressBalance) => (<p>{addressBalance[0]}: {addressBalance[1]}</p>))}
       </div>

@@ -25,7 +25,7 @@ class NameSetter extends React.Component {
     return (
       <div>
         <input onChange={this.updateChange}></input> 
-        <input type="submit" value="hio" onClick={this.setName}></input>
+        <input type="submit" value="Set name" onClick={this.setName}></input>
       </div>
     );
   }
